@@ -2,6 +2,8 @@
 
 Tiny Express API for people who want to contact me in a non-conventional way.
 
+[Test this API with a live demo.](/example)
+
 # Examples
 
 ---
