@@ -1,10 +1,10 @@
 {
   "name": "post.arkan.me",
   "version": "1.0.0",
-  "description": "Tiny Express API to receive messages via POST request",
+  "description": "Tiny Express API for people who want to contact me in a non-conventional way.",
   "main": "app.js",
   "scripts": {
-    "start": "SET NODE_ENV=production node app.js",
+    "start": "node app.js",
     "dev": "nodemon app"
   },
   "repository": {

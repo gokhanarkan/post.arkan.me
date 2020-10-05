@@ -22,15 +22,15 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // Security middlewares
-app.use(helmet());            // Set security headers
-app.use(xss());               // Prevent cross site scripting
+app.use(helmet()); // Set security headers
+app.use(xss()); // Prevent cross site scripting
 const limiter = rateLimit({
-  windowMs: 10 * 60 * 1000,   // 10 minutes
-  max: 100,                   // Max requests per time
+  windowMs: 10 * 60 * 1000, // 10 minutes
+  max: 100, // Max requests per time
 });
-app.use(limiter);             // Rate limiting
-app.use(hpp());               // HTTP parameter polution
-app.use(cors());              // Enable cors
+app.use(limiter); // Rate limiting
+app.use(hpp()); // HTTP parameter polution
+app.use(cors()); // Enable cors
 
 // Mounting routes
 app.use("/", email);
@@ -38,7 +38,7 @@ app.use("/", email);
 // Error handler
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 
 const server = app.listen(
   PORT,
