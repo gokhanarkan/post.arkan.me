@@ -1,9 +1,9 @@
 const express = require("express");
 
-const { postEmail } = require("../controllers/email");
+const { postEmail, landingPage } = require("../controllers/email");
 
 const router = express.Router();
 
-router.post("/", postEmail);
+router.get("/", landingPage).post("/", postEmail);
 
 module.exports = router;

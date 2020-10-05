@@ -1,6 +1,15 @@
 const sendEmail = require("../utils/sendEmail");
 const ErrorResponse = require("../utils/errorResponse");
 const validator = require("validator");
+const path = require("path");
+const fs = require("fs");
+const md = require("markdown-it")();
+
+exports.landingPage = async (req, res, next) => {
+  const readmePath = path.resolve("README.md");
+  const file = fs.readFileSync(readmePath, "utf8");
+  res.send(md.render(file));
+};
 
 exports.postEmail = async (req, res, next) => {
   let { email, message, phone } = req.body;

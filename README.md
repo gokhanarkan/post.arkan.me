@@ -1,8 +1,10 @@
 # post.arkan.me
 
-Tiny Express API for people who want to contact me in a non-conventional way. 
+Tiny Express API for people who want to contact me in a non-conventional way.
 
 # Examples
+
+---
 
 ## curl
 
@@ -15,6 +17,8 @@ curl -X "POST" "https://post.arkan.me" \
   "phone": ">{your phone (optional)}<"
 }'
 ```
+
+---
 
 ## axios
 
@@ -32,6 +36,8 @@ axios({
 	}
 })
 ```
+
+---
 
 ## python (requests)
 
@@ -61,4 +67,51 @@ except requests.exceptions.RequestException:
 
 ```
 
+---
 
+## go (http)
+
+```
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+	"bytes"
+)
+
+func main() {
+	// postEmail (POST https://post.arkan.me/)
+
+	json := []byte(`{"email": ">{your email}<","message": ">{your message}<","phone": ">{your phone (optional)}<"}`)
+	body := bytes.NewBuffer(json)
+
+	// Create client
+	client := &http.Client{}
+
+	// Create request
+	req, err := http.NewRequest("POST", "https://post.arkan.me/", body)
+
+	// Headers
+	req.Header.Add("Content-Type", "application/json; charset=utf-8")
+
+	// Fetch Request
+	resp, err := client.Do(req)
+
+	if err != nil {
+		fmt.Println("Failure : ", err)
+	}
+
+	// Read Response Body
+	respBody, _ := ioutil.ReadAll(resp.Body)
+
+	// Display Results
+	fmt.Println("response Status : ", resp.Status)
+	fmt.Println("response Headers : ", resp.Header)
+	fmt.Println("response Body : ", string(respBody))
+}
+
+```
+
+---
