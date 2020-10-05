@@ -5,10 +5,8 @@ const sendEmail = async (msg) => {
 
   try {
     const email = await sgMail.send(msg);
-    console.log(email);
     return true;
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
     return false;
   }
 };

@@ -3,7 +3,7 @@ const ErrorResponse = require("../utils/errorResponse");
 const validator = require("validator");
 
 exports.postEmail = async (req, res, next) => {
-  const { email, message } = req.body;
+  let { email, message, phone } = req.body;
 
   // Data validation
 
@@ -21,6 +21,10 @@ exports.postEmail = async (req, res, next) => {
     return next(
       new ErrorResponse("Please provide a valid email address.", 400)
     );
+  }
+
+  if (phone) {
+    message += `<br> Phone: ${phone}`;
   }
 
   // Sending email

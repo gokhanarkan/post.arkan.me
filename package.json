@@ -1,23 +1,24 @@
 {
-  "name": "contact.gokhanarkan.com",
+  "name": "post.arkan.me",
   "version": "1.0.0",
   "description": "Tiny Express API to receive messages via POST request",
   "main": "app.js",
   "scripts": {
-    "start": "SET NODE_ENV=production node server.js",
-    "dev": "nodemon server"
+    "start": "SET NODE_ENV=production node app.js",
+    "dev": "nodemon app"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gokhj/contact.gokhanarkan.com.git"
+    "url": "git+https://github.com/gokhj/post.arkan.me.git"
   },
   "author": "Gokhan Arkan",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gokhj/contact.gokhanarkan.com/issues"
+    "url": "https://github.com/gokhj/post.arkan.me/issues"
   },
-  "homepage": "https://github.com/gokhj/contact.gokhanarkan.com#readme",
+  "homepage": "https://github.com/gokhj/post.arkan.me#readme",
   "dependencies": {
+    "@sendgrid/mail": "^7.2.6",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
