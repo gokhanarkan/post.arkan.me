@@ -23,7 +23,7 @@ exports.examplePage = async (req, res, next) => {
 };
 
 exports.postEmail = async (req, res, next) => {
-  let { email, message, phone } = req.body;
+  let { name, email, message, phone } = req.body;
 
   // Data validation
 
@@ -47,11 +47,13 @@ exports.postEmail = async (req, res, next) => {
     message += `<br> Phone: ${phone}`;
   }
 
+  const from = name ? { email: email, name: name } : email;
+
   // Sending email
 
   const msg = {
     to: process.env.TO_EMAIL,
-    from: email,
+    from: from,
     subject: "Email via POST",
     text: message,
     html: `<p>${message}</p>`,

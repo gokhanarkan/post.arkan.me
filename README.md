@@ -8,42 +8,44 @@ Tiny Express API for people who want to contact me in a non-conventional way.
 
 ---
 
-## curl
+## &rarr; curl
 
-```
+```curl
 curl -X "POST" "https://post.arkan.me" \
      -H 'Content-Type: application/json; charset=utf-8' \
      -d $'{
+  "name": ">{your name}(optional)<",
   "email": ">{your email}<",
   "message": ">{your message}<",
-  "phone": ">{your phone (optional)}<"
+  "phone": ">{your phone}(optional)<"
 }'
 ```
 
 ---
 
-## axios
+## &rarr; axios
 
-```
+```javascript
 axios({
-	"method": "POST",
-	"url": "https://post.arkan.me",
-	"headers": {
-		"Content-Type": "application/json; charset=utf-8"
-	},
-	"data": {
-		"email": ">{your email}<",
-		"message": ">{your message}<",
-		"phone": ">{your phone (optional)}<"
-	}
-})
+  method: "POST",
+  url: "https://post.arkan.me",
+  headers: {
+    "Content-Type": "application/json; charset=utf-8",
+  },
+  data: {
+    name: ">{your name}(optional)<",
+    email: ">{your email}<",
+    message: ">{your message}<",
+    phone: ">{your phone}(optional)<",
+  },
+});
 ```
 
 ---
 
-## python (requests)
+## &rarr; python (requests)
 
-```
+```python
 # Install the Python Requests library:
 # `pip install requests`
 
@@ -57,6 +59,7 @@ try:
             "Content-Type": "application/json; charset=utf-8",
         },
         data=dumps({
+            "name": ">{your name}(optional)<",
             "email": ">{your email}<",
             "message": ">{your message}<",
             "phone": ">{your phone (optional)}<"
@@ -71,9 +74,9 @@ except requests.exceptions.RequestException:
 
 ---
 
-## go (http)
+## &rarr; go (http)
 
-```
+```go
 package main
 
 import (
@@ -86,7 +89,7 @@ import (
 func main() {
 	// postEmail (POST https://post.arkan.me/)
 
-	json := []byte(`{"email": ">{your email}<","message": ">{your message}<","phone": ">{your phone (optional)}<"}`)
+	json := []byte(`{"name": ">{your name}(optional)<","email": ">{your email}<","message": ">{your message}<","phone": ">{your phone}(optional)<"}`)
 	body := bytes.NewBuffer(json)
 
 	// Create client

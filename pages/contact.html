@@ -297,6 +297,7 @@
             // Send the data
             try {
               this.loading = "loading";
+
               let response = await fetch("/", {
                 method: "POST",
                 headers: {
@@ -304,6 +305,13 @@
                 },
                 body: JSON.stringify(data),
               });
+
+              response = await response.json();
+
+              if (!response.success) {
+                this.loading = "error";
+                return;
+              }
               this.loading = "result";
             } catch (err) {
               this.loading = "error";
