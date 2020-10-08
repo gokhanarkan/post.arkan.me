@@ -7,12 +7,17 @@ const rateLimit = require("express-rate-limit");
 const hpp = require("hpp");
 const cors = require("cors");
 const errorHandler = require("./middleware/error");
+const connectDB = require("./config/db");
 
 // Load env variables
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: "./config/config.env" });
+
+// Connect to database
+connectDB();
 
 // Router
 const email = require("./routes/email");
+const subscription = require("./routes/subscription");
 
 const app = express();
 app.use(express.json());
@@ -34,6 +39,7 @@ app.use(cors()); // Enable cors
 
 // Mounting routes
 app.use("/", email);
+app.use("/subscription", subscription);
 
 // Error handler
 app.use(errorHandler);
