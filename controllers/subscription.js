@@ -11,7 +11,7 @@ exports.saveSubscriber = async (req, res, next) => {
     return next(new ErrorResponse("Your request is not accepted.", 400));
   }
 
-  const url = `${req.protocol}://${req.headers.origin}`;
+  const url = `${req.headers.origin}`;
   const { email } = req.body;
 
   if (!email) {
