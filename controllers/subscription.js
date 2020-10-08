@@ -20,7 +20,7 @@ exports.saveSubscriber = async (req, res, next) => {
 
   try {
     const subscriber = await Subscription.create({ url, email });
-    res.status(200).json({
+    res.status(201).json({
       success: true,
       data: subscriber,
     });
