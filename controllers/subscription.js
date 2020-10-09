@@ -18,6 +18,12 @@ exports.saveSubscriber = async (req, res, next) => {
     return next(new ErrorResponse("Email cannot be empty.", 400));
   }
 
+  const duplicate = await Subscription.findOne({ url, email });
+
+  if (duplicate) {
+    return res.status(422).json({ success: false, duplicate: true });
+  }
+
   try {
     const subscriber = await Subscription.create({ url, email });
     res.status(201).json({
