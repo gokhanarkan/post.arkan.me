@@ -2,7 +2,9 @@
 
 Tiny Express API for people who want to contact me in a non-conventional way.
 
-[Test this API with a live demo.](/example)
+👋 [Test this API with a live demo.](/example)
+
+📖 [Related blog post](https://arkan.me/tiny-contact-api/)
 
 # Examples
 
