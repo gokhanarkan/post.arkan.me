@@ -4,6 +4,7 @@ const validator = require("validator");
 const path = require("path");
 const fs = require("fs");
 const md = require("markdown-it")();
+const Recipient = require("../models/Recipient");
 
 exports.landingPage = async (req, res, next) => {
   const readmePath = path.resolve("README.md");
@@ -24,6 +25,7 @@ exports.examplePage = async (req, res, next) => {
 
 exports.postEmail = async (req, res, next) => {
   let { name, email, message, phone } = req.body;
+  const origin = `${req.headers.origin}`;
 
   // Data validation
 
@@ -47,13 +49,18 @@ exports.postEmail = async (req, res, next) => {
     message += `<br> Phone: ${phone}`;
   }
 
-  const from = name ? { email: email, name: name } : email;
+  const fromEmail = name ? { email: email, name: name } : email;
+
+  // Get preconfigured recipient data if in the database
+
+  const recipient = await Recipient.findOne({ origin });
+  const toEmail = recipient ? recipient.email : process.env.TO_EMAIL;
 
   // Sending email
 
   const msg = {
-    to: process.env.TO_EMAIL,
-    from: from,
+    to: toEmail,
+    from: fromEmail,
     subject: "Email via POST",
     text: message,
     html: `<p>${message}</p>`,
