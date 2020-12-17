@@ -47,6 +47,8 @@ exports.postEmail = async (req, res, next) => {
 
   const fromEmail = name ? { email: email, name: name } : email;
 
+  message += `\n<br> Reply to: ${email}\n`;
+
   if (name) {
     message += `<br> Name: ${name}\n`;
   }
