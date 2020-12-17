@@ -45,11 +45,15 @@ exports.postEmail = async (req, res, next) => {
     );
   }
 
+  const fromEmail = name ? { email: email, name: name } : email;
+
+  if (name) {
+    message += `<br> Name: ${name}\n`;
+  }
+
   if (phone) {
     message += `<br> Phone: ${phone}`;
   }
-
-  const fromEmail = name ? { email: email, name: name } : email;
 
   // Get preconfigured recipient data if in the database
 
