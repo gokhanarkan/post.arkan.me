@@ -12,16 +12,16 @@ exports.landingPage = async (req, res, next) => {
   res.send(md.render(file));
 };
 
-exports.examplePage = async (req, res, next) => {
-  const filePath = path.resolve("pages", "contact.html");
-  const page = fs.readFileSync(filePath, "utf-8");
-  res
-    .header(
-      "Content-Security-Policy",
-      "script-src 'unsafe-eval' 'unsafe-inline' 'self' https://cdn.jsdelivr.net/npm/vue"
-    )
-    .send(page);
-};
+// exports.examplePage = async (req, res, next) => {
+//   const filePath = path.resolve("pages", "contact.html");
+//   const page = fs.readFileSync(filePath, "utf-8");
+//   res
+//     .header(
+//       "Content-Security-Policy",
+//       "script-src 'unsafe-eval' 'unsafe-inline' 'self' https://cdn.jsdelivr.net/npm/vue"
+//     )
+//     .send(page);
+// };
 
 exports.postEmail = async (req, res, next) => {
   let { name, email, message, phone } = req.body;
